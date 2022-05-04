@@ -19,6 +19,8 @@
   "homepage": "https://github.com/misscbrown/Social-Network-API#readme",
   "dependencies": {
     "express": "^4.18.1",
+    "moment": "^2.29.3",
+    "moments": "^0.0.2",
     "mongoose": "^6.3.2"
   }
 }
