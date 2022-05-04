@@ -1,25 +1,33 @@
+// Require express router
 const router = require('express').Router();
-const {
-    createThought,
+
+// Set requirements (from thoughts-controller)
+const { 
+    getAllThoughts, 
+    getThoughtsById, 
+    createThoughts, 
+    updateThoughts,
+    deleteThoughts,
     addReaction,
-    removeReaction,
-    removeThought,
-    getAllThoughts
-} = require('../controllers/thought-controller');
+    deleteReaction
 
-router
-    .route('/')
-    .get(getAllThoughts)
-    .post(createThought);
+} = require('../../controllers/thoughts-controller');
 
-    router  
-    .route('/:thoughtId')
-    .post(addReaction)
-    .delete(removeThought);
-    router
-    .route('/:thoughtId/:reactionId')
-    .delete(removeReaction);
-    
+// -- Directs to: /api/thoughts <GET>
+router.route('/').get(getAllThoughts);
 
-    module.exports = router;
+// -- Directs to: /api/thoughts/:id <GET, PUT, DELETE>
+router.route('/:id').get(getThoughtsById).put(updateThoughts).delete(deleteThoughts); 
+
+// -- Directs to: /api/thoughts/:userId <POST>
+router.route('/:userId').post(createThoughts);
+
+// -- Directs to: /api/thoughts/:thoughtId/reactions <POST>
+router.route('/:thoughtId/reactions').post(addReaction);
+
+// -- Directs to: /api/thoughts/:thoughtId/reactionId <DELETE>
+router.route('/:thoughtId/reactions/:reactionId').delete(deleteReaction);
+
+// Export module router
+module.exports = router;
     
