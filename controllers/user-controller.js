@@ -1,10 +1,10 @@
 // Require Users Model
 const {Users} = require('../models');
 
-// Set up Users Controller
+// Set up the Users Controller
 const usersController = {
     
-    // Create a new User
+    // Creates a new User
     createUsers({body}, res) {
         Users.create(body)
         .then(dbUsersData => res.json(dbUsersData))
@@ -72,7 +72,7 @@ const usersController = {
         .catch(err => res.status(400).json(err));
     },
 
-    // Delete a current user by ID
+    // Delete a current user by ID using findone and update, sends error if wrong id or no id found
     addFriend({params}, res) {
         Users.findOneAndUpdate({_id: params.id}, {$push: { friends: params.friendId}}, {new: true})
         .populate({path: 'friends', select: ('-__v')})
@@ -87,7 +87,7 @@ const usersController = {
         .catch(err => res.json(err));
     },
 
-    // Delete a current Friend
+    // Delete a current Friend using delete friend and findone and update
     deleteFriend({ params }, res) {
         Users.findOneAndUpdate({_id: params.id}, {$pull: { friends: params.friendId}}, {new: true})
         .populate({path: 'friends', select: '-__v'})
