@@ -14,6 +14,16 @@ Further Development
 
 Adding a front end to this, based on user input as opposed to seed data. Allowing users to follow each other. It would be cool to see what this would look like as a full application with front and back end. 
 
+Technologies Used
+
+Javascript
+Express
+Mongoose
+Mongo DB
+Insomnia
+
+Created by Carla Brown: djmisscbrown@hotmail.com 
+
 Acceptance Criteria
 
 GIVEN a social network API
